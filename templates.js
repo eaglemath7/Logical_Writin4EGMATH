@@ -18,8 +18,9 @@
   "use strict";
 
   var CARD = 1080;
-  var STYLES = ["yellow", "blue", "paper", "navy", "pastel", "dark", "magazine", "craft", "minimal", "chalk", "info", "kids", "editorial", "cream", "hand", "note", "txt"];
+  var STYLES = ["eagle", "yellow", "blue", "paper", "navy", "pastel", "dark", "magazine", "craft", "minimal", "chalk", "info", "kids", "editorial", "cream", "hand", "note", "txt"];
   var STYLE_LABEL = {
+    eagle: "🦅 독수리수학학원",
     yellow: "옐로 임팩트", blue: "블루 브라우저", paper: "종이 메모", navy: "네이비 프리미엄",
     pastel: "파스텔 소프트", dark: "다크 모던", magazine: "매거진 그리드", craft: "크래프트 손글씨",
     minimal: "미니멀 화이트", chalk: "칠판 · 교육", info: "인포그래픽", kids: "키즈 팝",
@@ -410,6 +411,50 @@
 .cn-txt-follow .pf img{width:100%;height:100%;object-fit:cover;}
 .cn-txt-follow .h{flex:1;font-family:var(--ff-body);font-weight:700;font-size:34px;color:var(--c-ink);}
 .cn-txt-follow .b{flex:none;background:#e7e4e4;color:#555;font-family:var(--ff-body);font-weight:700;font-size:28px;padding:14px 28px;border-radius:14px;}
+
+/* ===================== ⑱ 독수리 아카데미 (레드+네이비+화이트) ===================== */
+/* 학원 로고컬러(레드 #C00018 + 네이비 #003090) 기반 클린 카드 */
+.cn-eagle{--c-ink:#003090;--c-accent:#C00018;--c-onacc:#fff;--c-sub:#5a6a9a;--c-body:#2a3a70;--c-fill:#eef0f8;--c-edge:#c8d0e8;--c-logo:#fff;--c-dot:rgba(0,48,144,.2);--ff-title:'Noto Sans KR',sans-serif;--ff-body:'Noto Sans KR',sans-serif;--ls:-1px;background:#fff;}
+.cn-eagle .cn-title,.cn-eagle .cn-heading{font-weight:900;}
+.cn-eagle .cn-title .hl,.cn-eagle .cn-heading .hl{color:#C00018;}
+.cn-eagle .cn-inner{padding:148px 88px 116px 96px;}
+.cn-eagle .cn-kicker{font-size:34px;font-weight:700;letter-spacing:1px;color:rgba(0,48,144,.6);}
+.cn-eagle .cn-badge{background:#C00018;}
+/* 상단 네이비 헤더바 */
+.cn-eagle-head{position:absolute;top:0;left:0;right:0;height:120px;background:#003090;z-index:8;display:flex;align-items:center;padding:0 88px;gap:16px;}
+.cn-eagle-head .logotext{font-family:'Noto Sans KR',sans-serif;font-weight:900;font-size:32px;color:#fff;letter-spacing:-0.5px;line-height:1;}
+.cn-eagle-head img{height:56px;width:auto;max-width:260px;object-fit:contain;}
+.cn-eagle-head .divider{width:2px;height:32px;background:rgba(255,255,255,.35);flex:none;}
+.cn-eagle-head .subtitle{font-family:'Noto Sans KR',sans-serif;font-size:24px;font-weight:500;color:rgba(255,255,255,.72);}
+/* 왼쪽 레드 스트라이프 */
+.cn-eagle-stripe{position:absolute;left:0;top:120px;bottom:100px;width:8px;background:#C00018;z-index:7;}
+/* 하단 네이비 풋터바 */
+.cn-eagle-foot{position:absolute;bottom:0;left:0;right:0;height:100px;background:#003090;z-index:8;display:flex;align-items:center;justify-content:space-between;padding:0 88px;}
+.cn-eagle-foot .nm{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:28px;color:#fff;}
+.cn-eagle-foot .pg{font-family:'Noto Sans KR',sans-serif;font-size:24px;color:rgba(255,255,255,.6);}
+/* 내용 요소 색상 조정 */
+.cn-eagle .cn-check .ck{background:#f0f4ff;border-color:#c8d0e8;}
+.cn-eagle .cn-check .ic{border-color:#C00018;color:#C00018;}
+.cn-eagle .cn-check .ck.on{background:#C00018;border-color:#C00018;}
+.cn-eagle .cn-check .ck.on .ic{border-color:rgba(255,255,255,.4);color:#fff;}
+.cn-eagle .cn-check .ck.on .tx{color:#fff;}
+.cn-eagle .cn-list .item{background:#f0f4ff;border-color:#c8d0e8;border-radius:14px;}
+.cn-eagle .cn-list .item.on{background:#003090;color:#fff;border-color:#003090;}
+.cn-eagle .cn-step .n{background:#C00018;}
+.cn-eagle .cn-cmp .vs{color:#C00018;}
+.cn-eagle .cn-cmp .lab{color:#C00018;}
+.cn-eagle .cn-stat .num{color:#C00018;}
+.cn-eagle .cn-quote .mark{color:#C00018;}
+.cn-eagle .cn-qa .q b,.cn-eagle .cn-qa .a b{color:#C00018;}
+.cn-eagle .cn-go{color:#C00018;}
+/* CTA 카드 — 네이비 전체 배경 */
+.cn-eagle.ctacard{background:#003090;}
+.cn-eagle.ctacard .cn-eagle-head{background:rgba(0,0,0,.3);}
+.cn-eagle.ctacard .cn-eagle-stripe{background:#C00018;}
+.cn-eagle.ctacard .cn-eagle-foot{background:rgba(0,0,0,.3);}
+.cn-eagle.ctacard .cn-cta .t{color:#fff;}
+.cn-eagle.ctacard .cn-cta .s{color:rgba(255,255,255,.88);}
+.cn-eagle.ctacard .cn-cta .btn{background:#C00018;color:#fff;}
 `;
     var s = document.createElement("style");
     s.id = "cn-styles";
@@ -481,6 +526,7 @@
   function deco(style, isCover, isCta) {
     if (isCta) return "";
     switch (style) {
+      case "eagle": return ""; // eagle는 buildCard에서 eagleChrome()으로 처리
       case "yellow": return '<div class="ycorner"></div>' + (isCover ? '<div class="uline"></div>' : "");
       case "blue": return '<div class="win"></div><div class="dots3"><i></i><i></i><i></i></div><div class="xmark">✕</div>';
       case "paper": return isCover ? '<div class="paper-bg p1"></div><div class="paper-bg p2"></div><div class="paper"></div>' : '<div class="paper"></div>';
@@ -606,6 +652,25 @@
     var footR = [opts.region, opts.subject].filter(Boolean).map(esc).join(" · ");
     return '<div class="cn-ed-head"><span class="l">' + headL + '</span><span class="r">ISSUE ' + pad2(meta.index) + " / " + pad2(meta.total) + "</span></div>" +
       '<div class="cn-ed-foot"><span class="l">' + footL + '</span><span class="r">' + footR + "</span></div>";
+  }
+
+  /* ---------------- ⑱ 독수리 아카데미 전용 크롬 ---------------- */
+  function eagleChrome(opts, meta) {
+    // 상단 헤더바
+    var logoHtml;
+    if (opts.logoDataUrl) {
+      logoHtml = '<img src="' + opts.logoDataUrl + '" alt="">';
+    } else {
+      logoHtml = '<span class="logotext">' + esc(opts.academyName || "독수리수학") + "</span>";
+    }
+    var subj = opts.subject ? '<span class="divider"></span><span class="subtitle">' + esc(opts.subject) + "</span>" : "";
+    var head = '<div class="cn-eagle-head">' + logoHtml + subj + "</div>";
+    // 왼쪽 레드 스트라이프
+    var stripe = '<div class="cn-eagle-stripe"></div>';
+    // 하단 풋터바
+    var pg = pad2(meta.index) + " / " + pad2(meta.total);
+    var foot = '<div class="cn-eagle-foot"><span class="nm">' + esc(opts.academyName || "배곧 독수리수학") + '</span><span class="pg">' + pg + "</span></div>";
+    return head + stripe + foot;
   }
 
   /* ---------------- 세로형 3종 공통: 인스타 핸들 ---------------- */
@@ -743,6 +808,12 @@
 
   /* ---------------- 양식별 내부 HTML ---------------- */
   function coverInner(style, c, ek, opts) {
+    if (style === "eagle") {
+      return (c.badge ? '<div class="cn-badge" data-fs="28"' + EA(ek + ".badge") + ">" + esc(c.badge) + "</div>" : "") +
+        (c.kicker ? '<div class="cn-kicker" data-fs="34"' + EA(ek + ".kicker") + ">" + esc(c.kicker) + "</div>" : "") +
+        '<h3 class="cn-title" data-fs="84"' + EA(ek + ".title") + ">" + withHighlight(c.title, c.highlight, "hl") + "</h3>" +
+        (c.sub ? '<div class="cn-sub" data-fs="34"' + EA(ek + ".sub") + ">" + esc(c.sub) + "</div>" : "");
+    }
     if (style === "hand") return handCover(c, ek, opts);
     if (style === "note") return noteCover(c, ek, opts);
     if (style === "txt") return txtCover(c, ek, opts);
@@ -896,31 +967,29 @@
 
   /* ---------------- 카드 조립 ---------------- */
   function buildCard(style, format, innerHtml, opts, meta) {
+    var isEagle = style === "eagle";
     var isEd = style === "editorial";
     var isCream = style === "cream";
     var isTall = !!TALL[style];
     var isCover = format === "cover";
-    var isCta = format === "cta" && !isEd && !isCream && !isTall; // 에디토리얼·크림·세로형 CTA는 메인색 채움 X
+    var isCta = format === "cta" && !isEd && !isCream && !isTall && !isEagle;
     var c = document.createElement("div");
-    c.className = "card-1080 cn-" + style + (isCover ? " cover" : " content") + (isCta ? " ctacard" : "") +
+    c.className = "card-1080 cn-" + style + (isCover ? " cover" : " content") + (isCta || (isEagle && format === "cta") ? " ctacard" : "") +
       (isCream && format === "cta" ? " cr-outro" : "") + (isTall ? " tall" : "");
     if (opts.logoH) c.style.setProperty("--logo-h", opts.logoH + "px");
     if (opts.logoMaxW) c.style.setProperty("--logo-maxw", opts.logoMaxW + "px");
     applyBrand(c, opts);
-    if (isEd) {
-      // 에디토리얼: 하단 인디케이터/로고 대신 러닝헤드·풋(ISSUE 번호) 사용
+    if (isEagle) {
+      c.innerHTML = eagleChrome(opts, meta) + '<div class="cn-inner">' + innerHtml + "</div>";
+    } else if (isEd) {
       c.innerHTML = '<div class="cn-inner">' + innerHtml + "</div>" + editorialChrome(opts, meta);
     } else if (isCream) {
-      // 크림: 표지/마무리 남색 띠 + 공통 푸터(빨간 점·학원명·n/N)
       c.innerHTML = creamBand(format) + '<div class="cn-inner">' + innerHtml + "</div>" + creamChrome(opts, meta, format);
     } else if (style === "hand") {
-      // 손글씨 감성: 손그림 스티커 + @핸들(표지·CTA)
       c.innerHTML = '<div class="cn-inner">' + innerHtml + "</div>" + handChrome(opts, meta, format);
     } else if (style === "note") {
-      // 손그림 노트: 흰 노트카드 프레임 + 알약 핸들(모든 카드)
       c.innerHTML = noteCardFrame() + '<div class="cn-inner">' + innerHtml + "</div>" + notePill(opts);
     } else if (style === "txt") {
-      // 텍스트 캐러셀: 표지에만 @핸들(좌하단)
       c.innerHTML = '<div class="cn-inner">' + innerHtml + "</div>" + txtChrome(opts, format);
     } else {
       c.innerHTML = deco(style, isCover, isCta) + '<div class="cn-inner">' + innerHtml + "</div>" + indicator(meta);
@@ -940,7 +1009,6 @@
     var saved = inner.style.justifyContent;
     inner.style.justifyContent = "flex-start";
     apply();
-    // 실제 렌더된 높이(scrollHeight)가 카드 안(clientHeight)을 넘으면 단계적으로 축소
     while (inner.scrollHeight > inner.clientHeight + 1 && scale > 0.4 && guard < 60) { scale -= 0.05; apply(); guard++; }
     inner.style.justifyContent = saved;
   }
@@ -949,11 +1017,28 @@
   function render(style, data, opts) {
     injectStyles();
     opts = opts || {};
-    style = STYLES.indexOf(style) !== -1 ? style : "yellow";
+    style = STYLES.indexOf(style) !== -1 ? style : "eagle";
     data = data || {};
     var slides = data.slides || [];
     var total = slides.length + 1;
-    var pool = (opts.images || []).slice(); // 첨부 사진(업로드+노션) 풀
+    var pool = (opts.images || []).slice();
+    var out = [];
+    out.push(buildCard(style, "cover", coverInner(style, data.cover || {}, "cover", opts), opts, { index: 1, total: total }));
+    slides.forEach(function (s, i) {
+      s = s || {};
+      if (s.format === "imagecaption" && pool.length) s = Object.assign({}, s, { _img: pool.shift() });
+      out.push(buildCard(style, s.format || "text", formatInner(style, s, "s" + i, opts), opts, { index: i + 2, total: total }));
+    });
+    return out;
+  }
+
+  global.CardTemplates = {
+    render: render, autoFit: autoFit, injectStyles: injectStyles,
+    readableOn: readableOn, cardHeight: cardHeight,
+    STYLES: STYLES, STYLE_LABEL: STYLE_LABEL, FORMATS: FORMATS,
+  };
+})(window);
+�션) 풀
     var out = [];
     out.push(buildCard(style, "cover", coverInner(style, data.cover || {}, "cover", opts), opts, { index: 1, total: total }));
     slides.forEach(function (s, i) {
