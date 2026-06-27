@@ -1167,6 +1167,11 @@
     "⑦ CTA: 홍보는 글 맨 마지막에 딱 두 줄. 억지로 밀어붙이지 않습니다. " +
     "\"언제든 편하게 문의해 주세요 ^^\" 수준으로 끝냅니다.\n\n" +
 
+    "⑧ 이모지 활용: 소제목(##) 앞에 내용과 어울리는 이모지를 하나씩 넣어 눈에 띄게 합니다. " +
+    "예: 📌 핵심 정리, ✅ 체크리스트, 📖 개념 설명, 💡 팁·아이디어, 🧠 인지심리 포인트, " +
+    "📊 성적·통계, 🎯 목표·전략, 🔎 진단·분석, 📝 학습 방법, 💬 학생 이야기, 📞 문의. " +
+    "본문 중간에는 이모지를 억지로 넣지 않고, 소제목에만 자연스럽게 씁니다.\n\n" +
+
     "【출력 형식】\n" +
     "마크다운(# 제목, ## 소제목)으로 씁니다. " +
     "'CTA:', 'H2:', 'SEO:', '서론:', '결론:' 같은 라벨은 절대 쓰지 않습니다. " +
@@ -1436,10 +1441,10 @@
   function fileToDataUrl(file) {
     return new Promise(function (resolve, reject) {
       var fr = new FileReader();
-      fr.onload = function () { resolve(fr.result); };
-      fr.onerror = reject;
-      fr.readAsDataURL(file);
-    });
+    fr.onload = function (e) { resolve(e.target.result); };
+    fr.onerror = reject;
+    fr.readAsDataURL(file);
+  });
   }
   function parseDataUrl(d) {
     var m = /^data:([^;]+);base64,(.*)$/.exec(d || "");
@@ -1447,10 +1452,14 @@
     return { mime: m[1], data: m[2] };
   }
 
-  /* ====================================================================================== */
+  /* =================================================== */
   (function init() {
     state.settings = loadSettings();
     applySettingsToUI();
+    renderKeyHelp();
+  })();
+})();
+
     renderKeyHelph();
   })();
 })();
