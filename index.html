@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>배곧독수리수학 콘텐츠 메이커</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Gaegu:wght@700&family=Jua&family=Do+Hyeon&family=Song+Myung&family=Archivo+Black&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== 헤더 ===== -->
+  <header class="app-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-eagle">🦅</span>
+        <span class="brand-text">배곧독수리수학 <small>콘텐츠 메이커</small></span>
+      </div>
+      <div class="header-btns">
+        <button id="openSettings" class="hdrbtn">⚙ 설정</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="wrap">
+
+      <!-- ===== STEP 1: AI 연결 ===== -->
+      <section id="secAI" class="block step-block">
+        <div class="block-head">
+          <span class="tag" style="background:var(--navy)">1</span>
+          <h2>AI 연결</h2>
+        </div>
+        <p class="hint">글을 써줄 AI를 연결해요. <b>Gemini</b>가 기본(저렴·빠름). 공들인 글엔 Claude 탭으로 전환하세요.</p>
+
+        <div class="tabs" id="aiTabs">
+          <button class="t on" data-ai="gemini">Gemini <small>기본</small></button>
+          <button class="t" data-ai="claude">Claude <small>고품질</small></button>
+          <button class="t" data-ai="openai">ChatGPT</button>
+        </div>
+
+        <div class="keyrow mt">
+          <input id="apiKey" class="inp" type="password" placeholder="API 키를 붙여넣으세요 (AIza… / sk-ant-… / sk-…)" autocomplete="off">
+          <button id="testBtn" class="btn ghost">연결 테스트</button>
+          <span id="aiStatus" class="status"></span>
+        </div>
+
+        <div id="keyHelp" class="keyhelp mt"></div>
+
+        <button id="keyGuideBtn" class="btn ghost sm mt" style="margin-top:10px">📖 키 발급 단계별 안내</button>
+      </section>
+
+      <!-- ===== STEP 2: 입력 ===== -->
+      <section id="secInput" class="block step-block">
+        <div class="block-head">
+          <span class="tag" style="background:var(--navy)">2</span>
+          <h2>무엇을 쓸까요?</h2>
+        </div>
+        <p class="hint">주제와 요청사항을 입력하면 배곧독수리수학 스타일의 네이버 블로그 글 초안을 만들어요.</p>
+
+        <!-- 학원 빠른 설정 -->
+        <div class="academy-quick">
+          <div class="logo-row">
+            <div id="logoPrevMain" class="logo-prev"><span>로고</span></div>
+            <div class="academy-fields">
+              <label class="lbl">학원 이름</label>
+              <input id="academyNameMain" class="inp" type="text" placeholder="배곧독수리수학학원">
+              <label class="drop sm" for="logoFileMain" style="margin-top:8px">
+                <span class="di">🖼</span> 로고 업로드
+              </label>
+              <input id="logoFileMain" type="file" accept="image/*" class="hidden">
+            </div>
+          </div>
+        </div>
+
+        <!-- 주제 입력 -->
+        <div class="request mt">
+          <div class="request-head">📝 주제 · 자료</div>
+          <div class="mt">
+            <label class="lbl">주제 / 키워드 <span class="tip">예: 배곧 중등 수학 공부법</span></label>
+            <input id="topic" class="inp" type="text" placeholder="예: 중학교 수학 오답노트 활용법">
+          </div>
+          <div class="mt">
+            <label class="lbl">추가 설명 <span class="tip">글에 담을 내용, 사례, 수업 장면 등</span></label>
+            <textarea id="desc" class="inp area" rows="4" placeholder="예: 저희 학원에서는 오답을 단순히 다시 풀게 하지 않고, 왜 틀렸는지 한 줄로 쓰게 합니다. 시험에서 긴장해서 머릿속이 하얘지는 아이들에게 특히 효과가 있었어요."></textarea>
+          </div>
+        </div>
+
+        <!-- 요청사항 -->
+        <div class="request mt">
+          <div class="request-head">🎯 요청사항</div>
+          <div class="grid4 mt">
+            <div>
+              <label class="lbl">과목 / 업종</label>
+              <input id="reqSubject" class="inp" type="text" placeholder="예: 중등수학">
+            </div>
+            <div>
+              <label class="lbl">대상 독자</label>
+              <input id="reqTarget" class="inp" type="text" placeholder="예: 중학생 학부모">
+            </div>
+            <div>
+              <label class="lbl">글의 목적</label>
+              <input id="reqPurpose" class="inp" type="text" placeholder="예: 상담 문의 유도">
+            </div>
+            <div>
+              <label class="lbl">원하는 톤</label>
+              <input id="reqTone" class="inp" type="text" placeholder="예: 따뜻하고 전문적으로">
+            </div>
+            <div class="span2">
+              <label class="lbl">핵심 키워드 <span class="tip">네이버 검색 시 노출 원하는 단어 1개</span></label>
+              <input id="reqKeyword" class="inp" type="text" placeholder="예: 배곧 중등수학학원">
+            </div>
+            <div class="span2">
+              <label class="lbl">직접 경험 · 사례 <span class="tip" style="color:var(--red)">★ 여기 없는 내용은 AI가 지어내지 않아요</span></label>
+              <input id="reqExperience" class="inp" type="text" placeholder="예: 시험 전날 공식 외우다가 오히려 당일 머릿속 하얘진 학생 사례">
+            </div>
+            <div class="span2">
+              <label class="lbl">기타 요청</label>
+              <input id="reqEtc" class="inp" type="text" placeholder="예: 마지막에 체험수업 안내 한 줄 넣어주세요">
+            </div>
+          </div>
+        </div>
+
+        <!-- 모집 정보 (CTA용) -->
+        <div class="request mt" style="background:#fff6f6;border-color:#f0cdc8">
+          <div class="request-head">📣 모집 정보 <span style="font-size:12px;font-weight:500;color:#999">(없으면 비워도 돼요 — AI가 지어내지 않아요)</span></div>
+          <div class="grid4 mt">
+            <div>
+              <label class="lbl">정원 / 인원</label>
+              <input id="reqCapacity" class="inp" type="text" placeholder="예: 선착순 6명">
+            </div>
+            <div>
+              <label class="lbl">마감일</label>
+              <input id="reqDeadline" class="inp" type="text" placeholder="예: 7월 15일">
+            </div>
+            <div class="span2">
+              <label class="lbl">연락 방법</label>
+              <input id="reqContact" class="inp" type="text" placeholder="예: 카카오톡 채널 '배곧독수리수학'">
+            </div>
+          </div>
+        </div>
+
+        <!-- 참고 사진 -->
+        <div class="mt">
+          <label class="lbl">참고 사진 <span class="tip">최대 4장 · 카드뉴스에 활용</span></label>
+          <input id="photos" type="file" accept="image/*" multiple class="hidden">
+          <label for="photos" class="btn ghost" style="display:inline-flex;cursor:pointer">🖼 사진 업로드</label>
+          <div id="thumbs" class="thumbs"></div>
+        </div>
+
+        <!-- 글쓰기 버튼 -->
+        <div class="mt" style="margin-top:22px">
+          <button id="genBtn" class="btn primary big block" style="background:var(--red);box-shadow:0 6px 18px rgba(192,0,24,.28)">
+            ✍️ 블로그 글 쓰기
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== STEP 3: 블로그 결과 ===== -->
+      <section id="secResult" class="block step-block hidden">
+        <div class="block-head">
+          <span class="tag" style="background:var(--navy)">3</span>
+          <h2>블로그 글</h2>
+        </div>
+        <p class="hint">네이버 에디터에 <b>붙여넣고</b> 글씨 크기·색을 취향대로 꾸미면 돼요. 90% 초안이에요 — 선생님 경험으로 마무리해 주세요.</p>
+
+        <div class="result-toolbar">
+          <button id="regenBtn" class="btn ghost">🔄 다시 쓰기</button>
+          <button id="copyBtn" class="btn primary">📋 전체 복사</button>
+        </div>
+
+        <div id="blogOut" class="blog-out"></div>
+        <div id="keywordBox" class="keywords mt"></div>
+      </section>
+
+      <!-- ===== STEP 4: 카드뉴스 ===== -->
+      <section id="secCards" class="block step-block hidden">
+        <div class="block-head">
+          <span class="tag" style="background:var(--navy)">4</span>
+          <h2>카드뉴스</h2>
+        </div>
+        <p class="hint">블로그 글 기반으로 카드뉴스를 만들거나, 글 없이 빠르게 만들 수도 있어요.</p>
+
+        <div class="card-controls">
+          <button id="cardGenBtn" class="btn primary">🎴 카드뉴스 만들기</button>
+          <button id="quickCardBtn" class="btn ghost">⚡ 빠르게 만들기 <span class="tip">(글 없이)</span></button>
+          <span id="autoMood" class="auto-mood"></span>
+        </div>
+
+        <!-- 스타일 탭 -->
+        <div class="style-pick">
+          <label class="lbl inline">스타일</label>
+          <div class="tabs wrap mt" id="styleTabs" style="margin-top:8px">
+            <button class="t" data-style="navy">네이비 프리미엄</button>
+            <button class="t" data-style="cream">크림·보라</button>
+            <button class="t" data-style="chalk">칠판·교육</button>
+            <button class="t" data-style="editorial">에디토리얼</button>
+            <button class="t" data-style="info">인포그래픽</button>
+            <button class="t" data-style="minimal">미니멀</button>
+            <button class="t" data-style="blue">블루 브라우저</button>
+            <button class="t" data-style="yellow">옐로 임팩트</button>
+            <button class="t" data-style="pastel">파스텔 소프트</button>
+            <button class="t" data-style="paper">종이 메모</button>
+            <button class="t" data-style="dark">다크 모던</button>
+            <button class="t" data-style="magazine">매거진</button>
+            <button class="t" data-style="craft">크래프트</button>
+            <button class="t" data-style="kids">키즈 팝</button>
+            <button class="t" data-style="hand">손글씨 감성</button>
+            <button class="t" data-style="note">손그림 노트</button>
+            <button class="t" data-style="txt">텍스트 캐러셀</button>
+          </div>
+        </div>
+
+        <!-- 카드 영역 -->
+        <div id="cardArea" class="hidden">
+          <div class="card-actions mt" style="margin-bottom:14px">
+            <button id="saveAllBtn" class="btn ghost sm">⬇ 전체 PNG</button>
+            <button id="saveZipBtn" class="btn ghost sm">📦 ZIP으로 저장</button>
+          </div>
+
+          <div id="cardStage" class="card-stage"></div>
+
+          <!-- 인스타 캡션 -->
+          <div id="instaBox" class="insta-box">
+            <div class="insta-head">
+              📱 인스타 캡션
+              <span>카드뉴스 내용 기반으로 자동 생성돼요</span>
+              <button id="copyInstaBtn" class="btn ghost sm">복사</button>
+            </div>
+            <textarea id="instaText" class="inp area" rows="6" placeholder="카드뉴스를 만들면 여기에 캡션이 자동으로 채워져요"></textarea>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /.wrap -->
+  </main>
+
+  <footer class="app-foot">
+    <p>배곧독수리수학학원 · 콘텐츠 메이커 v1.0 · API 키는 이 브라우저 밖으로 나가지 않아요</p>
+  </footer>
+
+  <!-- ===== 키 발급 가이드 모달 ===== -->
+  <div id="keyGuideModal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="guideTitle">키 발급 안내</h3>
+        <button id="closeGuide" class="iconbtn" style="background:var(--fill-2);color:var(--ink)">✕</button>
+      </div>
+      <div class="modal-body" id="guideBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== 설정 모달 ===== -->
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-box" style="max-width:520px">
+      <div class="modal-head">
+        <h3>⚙ 설정</h3>
+        <button id="closeSettings" class="iconbtn" style="background:var(--fill-2);color:var(--ink)">✕</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- 학원 기본 정보 -->
+        <div class="set-sec">
+          <label class="lbl strong">학원 기본 정보</label>
+          <div class="mt">
+            <label class="lbl">학원 이름</label>
+            <input id="academyName" class="inp" type="text" placeholder="배곧독수리수학학원">
+          </div>
+          <div class="mt">
+            <label class="lbl">지역</label>
+            <input id="region" class="inp" type="text" placeholder="배곧">
+          </div>
+          <div class="mt">
+            <label class="lbl">기본 톤 <span class="tip">비워두면 따뜻하고 친근하게</span></label>
+            <input id="defaultTone" class="inp" type="text" placeholder="예: 전문적이고 따뜻하게">
+          </div>
+        </div>
+
+        <!-- 로고 -->
+        <div class="set-sec">
+          <label class="lbl strong">로고</label>
+          <div class="logo-row mt">
+            <div id="logoPrev" class="logo-prev"><span>로고<br>미리보기</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+              <label class="drop" for="logoFile">
+                <span class="di">🖼</span>
+                <span>클릭해서 로고 업로드<br><small>PNG/JPG (투명 배경 권장)</small></span>
+              </label>
+              <input id="logoFile" type="file" accept="image/*" class="hidden">
+            </div>
+          </div>
+          <div class="mt">
+            <label class="lbl">로고 위치</label>
+            <div class="tabs" id="logoPosTabs" style="margin-top:6px">
+              <button class="t" data-pos="br">우하단</button>
+              <button class="t on" data-pos="bl">좌하단</button>
+              <button class="t" data-pos="tr">우상단</button>
+            </div>
+          </div>
+          <div class="mt">
+            <label class="lbl">로고 크기</label>
+            <div class="tabs" id="logoSizeTabs" style="margin-top:6px">
+              <button class="t" data-size="sm">작게</button>
+              <button class="t on" data-size="md">보통</button>
+              <button class="t" data-size="lg">크게</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 브랜드 색 -->
+        <div class="set-sec">
+          <label class="lbl strong">브랜드 색</label>
+          <label class="check" style="margin-top:8px">
+            <input id="brandOn" type="checkbox" checked>
+            <span>카드뉴스에 학원 색 적용</span>
+          </label>
+          <div class="brand-row mt">
+            <div class="brand-field">
+              <label class="lbl">메인 색 (파랑)</label>
+              <div class="color-wrap">
+                <input id="brandMain" type="color" value="#003090">
+                <input id="brandMainHex" class="inp hex" type="text" value="#003090" maxlength="7">
+              </div>
+            </div>
+            <div class="brand-field">
+              <label class="lbl">포인트 색 (빨강)</label>
+              <div class="color-wrap">
+                <input id="brandPoint" type="color" value="#C00018">
+                <input id="brandPointHex" class="inp hex" type="text" value="#C00018" maxlength="7">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 내 문체 -->
+        <div class="set-sec">
+          <label class="lbl strong">내 문체 견본 <span class="tip">등록하면 글이 선생님 말투로 나와요</span></label>
+          <div id="voiceList" class="voice-list"></div>
+          <p id="voiceMsg" class="hint" style="margin-top:8px"></p>
+          <div class="voice-input mt">
+            <label class="lbl">블로그 글 직접 붙여넣기</label>
+            <textarea id="voicePaste" class="inp area" rows="4" placeholder="이전에 쓴 블로그 글이나 선생님이 직접 쓴 글을 붙여넣으세요 (80자 이상)"></textarea>
+            <button id="voicePasteAdd" class="btn ghost sm" style="margin-top:8px">+ 문체 견본으로 추가</button>
+          </div>
+        </div>
+
+        <button id="saveSettings" class="btn primary block" style="margin-top:8px;background:var(--navy)">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="templates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
