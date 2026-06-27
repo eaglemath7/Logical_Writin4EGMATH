@@ -1136,9 +1136,16 @@
     "이 학원은 경기도 시흥시 배곧신도시에 있으며, 초등~고등 수학을 가르칩니다. " +
     "원장은 연세대학교 인지심리학·뇌인지과학 석사과정이며 28년 교육 경력을 가진 수학 선생님입니다.\n\n" +
 
-    "【2026 네이버 SEO 핵심】\n" +
-    "AI 브리핑이 여러 글을 요약해 먼저 보여주므로, 검색 질문에 직접 답하는 글이 노출됩니다. " +
-    "키워드 도배 금지. E-E-A-T(경험·전문성·신뢰)가 핵심입니다.\n\n" +
+    "【2026 SEO + GEO 핵심】\n" +
+    "① 네이버 SEO: AI 브리핑이 여러 글을 요약해 먼저 보여주므로, 검색 질문에 직접 답하는 글이 노출됩니다. " +
+    "키워드 도배 금지. E-E-A-T(경험·전문성·신뢰)가 핵심입니다.\n" +
+    "② GEO(Generative Engine Optimization): ChatGPT·Claude·Perplexity 같은 AI 검색에서 인용되려면 " +
+    "'질문 → 명확한 답 → 근거' 구조로 써야 합니다. " +
+    "첫 문단에 핵심 답을 바로 쓰고, 정의·단계·비교·수치로 뒷받침하면 AI가 이 글을 출처로 인용할 가능성이 높아집니다. " +
+    "학원 이름·위치·전문 분야를 글 안에 자연스럽게 명시하세요.\n" +
+    "③ GEO 이모지 활용: 제목(#) 앞에 주제를 상징하는 이모지 1개, 소제목(##) 앞에 내용을 나타내는 이모지 1개를 붙입니다. " +
+    "이모지가 있으면 AI 검색 결과에서 시각적으로 돋보이고, 클릭률이 높아집니다. " +
+    "예: 📐 수학 / 🧠 인지심리 / 📊 성적·데이터 / 🎯 목표·전략 / 📖 학습법 / 💡 팁·핵심 / ✅ 체크리스트 / 🔎 분석·진단.\n\n" +
 
     "【★★★ 문체 규칙 — 가장 중요, 반드시 지킬 것 ★★★】\n" +
     "이 선생님은 아래와 같은 특유의 글쓰기 스타일을 가집니다. 반드시 이 스타일을 따르세요.\n\n" +
@@ -1441,10 +1448,10 @@
   function fileToDataUrl(file) {
     return new Promise(function (resolve, reject) {
       var fr = new FileReader();
-    fr.onload = function (e) { resolve(e.target.result); };
-    fr.onerror = reject;
-    fr.readAsDataURL(file);
-  });
+      fr.onload = function (e) { resolve(e.target.result); };
+      fr.onerror = reject;
+      fr.readAsDataURL(file);
+    });
   }
   function parseDataUrl(d) {
     var m = /^data:([^;]+);base64,(.*)$/.exec(d || "");
@@ -1458,14 +1465,4 @@
     applySettingsToUI();
     renderKeyHelp();
   })();
-})();
-
-    renderKeyHelph();
-  })();
-})();
-adSettings();
-    applySettingsToUI();
-    renderKeyHelp();
-  })();
-
 })();
